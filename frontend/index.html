@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Task Manager</h1>
+
+    <div class="controls">
+      <select onchange="filterTasks(this.value)">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <button onclick="openModal()">+ New Task</button>
+    </div>
+  </div>
+
+  <!-- Task Grid -->
+  <div id="taskList" class="task-grid"></div>
+
+</div>
+
+<!-- ===================== -->
+<!-- ADD / CREATE MODAL -->
+<!-- ===================== -->
+<div id="taskModal" class="modal">
+  <div class="modal-content">
+    <h2>Add Task</h2>
+
+    <input type="text" id="title" placeholder="Task title">
+
+    <select id="priority">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <input type="date" id="due_date">
+
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- DETAIL VIEW MODAL -->
+<!-- ===================== -->
+<div id="detailModal" class="modal">
+  <div class="modal-content">
+
+    <h2 id="detailTitle"></h2>
+
+    <p><strong>Priority:</strong> <span id="detailPriority"></span></p>
+    <p><strong>Status:</strong> <span id="detailStatus"></span></p>
+    <p><strong>Due Date:</strong> <span id="detailDate"></span></p>
+
+    <div class="task-buttons">
+      <button class="edit-btn" onclick="enableEditFromDetail(event)">Edit</button>
+      <button class="delete-btn" onclick="deleteFromDetail()">Delete</button>
+    </div>
+
+    <button onclick="closeDetailModal()">Close</button>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
